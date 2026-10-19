@@ -4,17 +4,37 @@
 
 ---
 
-## 📸 ตัวอย่างหน้าจอระบบ (Screenshots)
+## 📸 ตัวอย่างหน้าจอระบบ (System Screenshots)
 
 ### 1. หน้าแรกของร้านค้า (Storefront Catalog & Instant Purchase)
 แสดงแคตตาล็อกสินค้า บัตรของขวัญ และคีย์ดิจิทัล พร้อมระบบกรองหมวดหมู่ การคำนวณราคาแบบเรียลไทม์ และระบบตรวจสอบสถานะสต็อกอัตโนมัติ
 
 ![Storefront Catalog](docs/screenshots/01_storefront.png)
 
-### 2. ระบบชำระเงินและล็อกสต็อกสินค้า (Checkout & Concurrency Reservation)
-เมื่อผู้ซื้อทำการสั่งซื้อ ระบบจะสร้าง Order พร้อมล็อกสต็อกบัตร (Voucher Reservation) เป็นเวลา 15 นาที พร้อมตัวนับเวลาถอยหลัง (Countdown Timer) และระบบสร้าง PromptPay QR Code อัตโนมัติ ป้องกันปัญหาการแย่งซื้อสินค้า (Race Condition)
+### 2. ตะกร้าสินค้าและการล็อกสต็อก (Slide-over Cart Drawer & 15-Min Reservation)
+ระบบตะกร้าสินค้าแบบ Slide-over Drawer สามารถปรับเพิ่ม-ลดจำนวน ตรวจสอบยอดรวมชำระ กรอกอีเมลสำหรับรับรหัส และสั่งจองสต็อกล่วงหน้า 15 นาที ป้องกันการแย่งซื้อ
 
-![Payment Modal](docs/screenshots/02_payment_modal.png)
+![Cart Drawer](docs/screenshots/02_cart_drawer.png)
+
+### 3. ระบบชำระเงินและนับเวลาถอยหลัง (PromptPay QR Payment & Countdown Timer)
+เมื่อยืนยันคำสั่งซื้อ ระบบจะสร้าง Order Reference พร้อมเจน QR Code แบบ PromptPay มาตรฐาน และมีตัวนับเวลาถอยหลัง 15 นาที (14:58) แสดงความชัดเจนของสถานะการจอง
+
+![PromptPay Payment Modal](docs/screenshots/03_promptpay_payment.png)
+
+### 4. การส่งมอบรหัสคีย์ทันที (Instant Fulfillment & PIN Unmasking)
+เมื่อชำระเงินเสร็จสิ้น ระบบจะปลดล็อกรหัสจริง (Unmask PIN Code) ออกมาทันที พร้อมแสดง Serial Number, ปุ่มกดคัดลอกรหัส (Copy), และคู่มือวิธีเติมรหัสของแต่ละแพลตฟอร์ม
+
+![Instant Fulfillment & PIN Display](docs/screenshots/04_fulfillment_pin.png)
+
+### 5. ค้นหาและจัดการคำสั่งซื้อแบบ Dual-Key (Order Tracking & 2FA OTP)
+ลูกค้า Guest Checkout สามารถเข้ามาค้นหาและตรวจสอบคำสั่งซื้อย้อนหลังได้อย่างปลอดภัย โดยต้องระบุทั้ง **หมายเลขคำสั่งซื้อ** และ **อีเมลผู้ซื้อ** ให้ตรงกัน พร้อมระบบ 2FA OTP
+
+![Order Tracking Modal](docs/screenshots/05_order_tracking.png)
+
+### 6. แผงควบคุมระบบหลังบ้าน (Admin Backoffice & Inventory Management)
+แดชบอร์ดสำหรับผู้ดูแลระบบ แสดงยอดขายรวมแบบเรียลไทม์ จำนวนออเดอร์ที่สำเร็จ จำนวนสต็อกคงเหลือ ระบบนำเข้ารหัสบัตรแบบชุด (Bulk PIN Import) และตารางตรวจสอบสต็อกแยกตามแพ็กเกจ
+
+![Admin Dashboard](docs/screenshots/06_admin_dashboard.png)
 
 ---
 
