@@ -1,0 +1,21 @@
+# Dependencies
+vendor/
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# Temporary files & Logs
+*.log
+*.tmp
+database/*.sqlite-journal
+database/*.sqlite-wal
+database/*.sqlite-shm
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini

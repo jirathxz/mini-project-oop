@@ -16,41 +16,47 @@ paying Netflix without a card on file.
 
 ## Product Purpose
 
-CARDVAULT is a digital key marketplace in the CDKeys mold, scoped to Thai gift
-cards: a guest picks a denomination, pays, and gets a working PIN instantly on
-screen and by email. Success means code-in-hand in under a minute with no
-signup, and every code re-viewable later by its buyer.
+CARDVAULT is a digital key & gift card storefront structured in the G2A mold,
+scoped to Thai digital entertainment: a guest buyer browses by category and
+platform, selects a denomination, and completes checkout via Instant Buy or the
+Cart Drawer. Payment via PromptPay QR yields a working PIN instantly on screen,
+mirrored to email, and re-accessible via the OTP inbox.
 
 ## Positioning
 
-A CDKeys-style instant-delivery key shop for three Thai gift-card brands, with
-guest-only checkout and PromptPay-first payment. Neighboring top-up sites sell
-the same cards through accounts, carts, and manual delivery; this one sells
-speed and proof: no login, QR payment, PIN revealed immediately with a receipt.
+A G2A-style instant-delivery digital key storefront tailored for Thai buyers,
+with guest-only checkout and PromptPay-first payment. Unlike multi-vendor
+marketplaces that require seller management or accounts, CARDVAULT pairs G2A's
+browsing taxonomy (Category → Platform → Denomination, Region tags, Instant Key
+badges) with single-merchant direct fulfillment for speed and certainty.
 
 ## Operating Context
 
-- Guest purchase flow: pick denomination → email → PromptPay QR (or credit
-  card) → PIN revealed on screen, mirrored to email and the OTP inbox.
-- Payment window is 15 minutes per order; expiry blocks confirmation and the
-  buyer must reorder.
+- Browsing & Selection: G2A-inspired catalog with Category filtering (Gift Cards,
+  Streaming, Gaming), Platform badges, Region indicators (`TH` / `GLOBAL`), and
+  Instant Digital Delivery badges.
+- Guest purchase flow: pick denomination → email → Instant Buy (direct) or Cart
+  Drawer → PromptPay QR (or simulated card) → PIN revealed on screen, mirrored
+  to email and the OTP inbox.
+- Payment window is 15 minutes per order; expired reservations are swept lazily
+  on incoming requests.
 - Post-purchase proof: order-ref + email dual-key tracking page, plus an
   email-OTP inbox holding all paid codes for that address.
-- Runs on XAMPP-style MySQL in production-like setups, with SQLite and
-  file-simulation fallbacks so the flow demos with zero config.
+- Runs on XAMPP-style MySQL in production-like setups, with SQLite auto-fallback
+  (`database/cardvault.sqlite`) and auto-seed so the flow demos with zero config.
 - Thai-language storefront; THB only.
 
 ## Capabilities and Constraints
 
-- Confirmed: 11 denominations across Google Play, Apple, Netflix; cart and
-  buy-now; voucher reservation with row locks (`available` → `reserved` →
-  `sold`); masked PINs until paid; per-brand redemption guides; order tracking;
+- Catalog Taxonomy: 3-tier hierarchy (`Category` → `Platform` → `Denomination`).
+- Confirmed Denominations: 11 denominations across Google Play, Apple, Netflix;
+  Cart Drawer and Instant Buy; voucher reservation with row locks (`available` →
+  `reserved` → `sold`); masked PINs until paid; redemption guides; order tracking;
   OTP inbox sessions.
-- Quantity is 1–10 units per order line (enforced in `CheckoutService`).
-- Payment confirmation is currently simulated (buyer self-confirms after
-  scanning); a real payment gateway integration is explicitly undecided.
-- Scope is fixed at three brands; no new brands planned.
-- No real voucher supplier is connected; seed and demo codes are test data.
+- Quantity: 1–10 units per order line (enforced in `CheckoutService`).
+- Payment confirmation is simulated (buyer confirms after scanning PromptPay QR);
+  zero-dependency instant demo.
+- Inventory: Single-merchant curated inventory; seed and demo codes are test data.
 
 ## Brand Commitments
 
@@ -63,11 +69,8 @@ speed and proof: no login, QR payment, PIN revealed immediately with a receipt.
 
 ## Evidence on Hand
 
-- Working storefront and API in this repo (`public/`, `api/`, `src/`).
-- Test voucher codes in `database/seed.sql` and the SQLite bootstrapper in
-  `config/Database.php` — demo data, not real inventory.
-- Cover photos in `public/assets/img/` (licensed as above).
-- Design rationale in `OOP-OOAD.md`.
+- Documentation: [PRODUCT.md](file:///d:/_Work/mini-project-oop/PRODUCT.md), [GLOSSARY.md](file:///d:/_Work/mini-project-oop/GLOSSARY.md), and [ADRs](file:///d:/_Work/mini-project-oop/docs/adr/).
+- Zero-config bootstrap: SQLite fallback in `database/cardvault.sqlite`.
 - Absent and must not be fabricated: real customer testimonials, real sales
   figures, a live payment gateway, supplier terms.
 
@@ -76,5 +79,5 @@ speed and proof: no login, QR payment, PIN revealed immediately with a receipt.
 1. No signup, ever — an account wall is a lost sale.
 2. Code in hand in under a minute, or the sale failed.
 3. Pay the Thai way: PromptPay first, cards second.
-4. Proof with every order: receipt on screen, copy by email, codes re-viewable.
-5. Three brands, done well — catalog sprawl is refused.
+4. G2A clarity: Clear region tags, instant delivery badges, and instant buy pathways.
+5. Three platforms, done well — catalog sprawl is refused.
